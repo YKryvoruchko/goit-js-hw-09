@@ -10,9 +10,79 @@
 @import url('./container.css');
 @import url('./animations.css');
 
-/* Sections style */
-@import url('./header.css');
-@import url('./vite-promo.css');
-@import url('./badges.css');
-@import url('./back-link.css');
-@import url('./footer.css');
+
+/* ...existing code... */
+:root {
+    --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --animation-duration: 250ms;
+    --card-gap: 24px;
+    --container-max: 1128px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+body {
+    background: #f3f3f3;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    color: #222;
+    padding: 0;
+}
+
+.gallery {
+    display: grid;
+    max-width: var(--container-max);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-auto-rows: 240px;
+    gap: var(--card-gap);
+    justify-content: center;
+    margin: 24px auto 0 auto;
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(15, 15, 15, 0.05);
+}
+
+.gallery-item {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    box-shadow:
+        0px 1px 3px 0px rgba(0, 0, 0, 0.12),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.08),
+        0px 2px 1px -1px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.gallery-link {
+    display: block;
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    transition: transform var(--animation-duration) var(--timing-function),
+        box-shadow var(--animation-duration) var(--timing-function);
+}
+
+.gallery-link:hover {
+    cursor: zoom-in;
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(15, 15, 15, 0.06);
+}
+
+.gallery-image {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform var(--animation-duration) var(--timing-function);
+    will-change: transform;
+}
+
+.gallery-link:hover .gallery-image {
+    transform: scale(1.03);
+}
